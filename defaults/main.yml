@@ -1,0 +1,54 @@
+---
+sap_iq_username: sybase
+sap_iq_groupname: sybase
+sap_iq_home: /var/sybase
+sap_iq_ver: 160011P_1-20011180
+sap_iq_patch: ebf26352
+sap_iq_mirror: http://arothste-desktop.blackrock.com:8000
+
+sap_iq_chosen_feature_list:
+  - fjconnect70
+  - fiq_client_common
+  - fiq_odbc
+  - fiq_server
+  - fconn_add_lm
+  - fiq_shared
+  - fiq_client_web
+  - fiq_cfw
+  - fiq_cmap
+  - fsysam_util
+  - fiq_cockpit_agent
+sap_iq_chosen_install_feature_list:
+  - fjconnect70
+  - fiq_client_common
+  - fiq_odbc
+  - fiq_server
+  - fconn_add_lm
+  - fiq_shared
+  - fiq_client_web
+  - fiq_cfw
+  - fiq_cmap
+  - fsysam_util
+  - fiq_cockpit_agent
+sap_iq_chosen_install_set: Typical
+
+sap_iq_sybase_product_license_type: license
+sap_iq_sysam_product_edition: 'Enterprise Edition (EE)'
+sap_iq_sysam_license_type: 'CPU Development and Test License (DT)'
+sap_iq_sysam_license_source: proceed_without_license
+
+sap_iq_sysam_notification_enable: 'false'
+sap_iq_sysam_notification_smtp_hostname: smtp
+sap_iq_sysam_notification_smtp_portnumber: 25
+sap_iq_sysam_notification_sender_email: arothste
+sap_iq_sysam_notification_recipient_email: arothste
+sap_iq_sysam_notification_email_severity: NONE
+
+sap_iq_config_cockpit_http_port: 4282
+sap_iq_config_cockpit_https_port: 4283
+
+sap_iq_cockpit_rmi_port_number: 4992
+sap_iq_cockpit_tds_port_number: 4998
+
+sap_iq_start_cockpit_server: 'No'
+

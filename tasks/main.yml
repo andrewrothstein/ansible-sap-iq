@@ -1,0 +1,59 @@
+---
+- name: create sybase group
+  become: yes
+  become_user: root
+  group: name={{sap_iq_groupname}} state=present
+
+- name: create sybase user
+  become: yes
+  become_user: root
+  user: >-
+    name={{sap_iq_username}}
+    group={{sap_iq_groupname}}
+    home={{sap_iq_home}}
+    state=present
+
+- name: write responses...
+  become: yes
+  become_user: '{{sap_iq_username}}'
+  with_items:
+    - responses
+  template: >-
+    src={{item}}.j2
+    dest={{sap_iq_home}}/{{item}}
+    mode=0644
+
+- name: download installation media
+  become: yes
+  become_user: '{{sap_iq_username}}'
+  get_url: >-
+    url={{sap_iq_url}}
+    dest=/tmp/{{sap_iq_archive}}
+    mode=0644
+
+- name: mkdirs for installer and target
+  become: yes
+  become_user: '{{sap_iq_username}}'
+  file: >-
+    path={{sap_iq_home}}/installer
+    state=directory
+    mode=0755
+
+- name: unarchive installer
+  become: yes
+  become_user: '{{sap_iq_username}}'
+  unarchive: >-
+    src=/tmp/{{sap_iq_archive}}
+    dest={{sap_iq_home}}/installer
+    creates={{sap_iq_home}}/installer/{{sap_iq_patch}}
+
+- name: install...
+  become: yes
+  become_user: '{{sap_iq_username}}'
+  command: >-
+    {{sap_iq_home}}/installer/{{sap_iq_patch}}/setup.bin
+    -f {{sap_iq_home}}/responses
+    -i silent
+    -DAGREE_TO_SAP_LICENSE=true
+  args:
+    creates: '{{sap_iq_home}}/SYBASE.sh'

@@ -1,0 +1,53 @@
+#Validate Response File
+#----------------------
+RUN_SILENT=true
+
+#Choose Install Folder
+#---------------------
+USER_INSTALL_DIR={{sap_iq_home}}
+
+#Choose Install Set
+#------------------
+CHOSEN_FEATURE_LIST={{sap_iq_chosen_feature_list|join(",")}}
+CHOSEN_INSTALL_FEATURE_LIST={{sap_iq_chosen_install_feature_list|join(",")}}
+CHOSEN_INSTALL_SET={{sap_iq_chosen_install_set}}
+
+#Choose Product License Type
+#---------------------------
+SYBASE_PRODUCT_LICENSE_TYPE={{sap_iq_sybase_product_license_type}}
+
+#Choose SYSAM Product Edtion and License Type
+#--------------------------------------------
+SYSAM_PRODUCT_EDITION={{sap_iq_sysam_product_edition}}
+SYSAM_LICENSE_TYPE={{sap_iq_sysam_license_type}}
+SYSAM_LICENSE_SOURCE={{sap_iq_sysam_license_source}}
+
+#SySAM Notification Setting
+#--------------------------
+SYSAM_NOTIFICATION_ENABLE={{sap_iq_sysam_notification_enable}}
+SYSAM_NOTIFICATION_SMTP_HOSTNAME={{sap_iq_sysam_notification_smtp_hostname}}
+SYSAM_NOTIFICATION_SMTP_PORTNUMBER={{sap_iq_sysam_notification_smtp_portnumber}}
+SYSAM_NOTIFICATION_SENDER_EMAIL={{sap_iq_sysam_notification_sender_email}}
+SYSAM_NOTIFICATION_RECIPIENT_EMAIL={{sap_iq_sysam_notification_recipient_email}}
+SYSAM_NOTIFICATION_EMAIL_SEVERITY={{sap_iq_sysam_notification_email_severity}}
+
+#Install
+#-------
+-fileOverwrite_/tmp/sybuninstall/IQSuite/uninstall.lax=Yes
+
+#Cockpit - Configure HTTP/HTTPS Ports
+#------------------------------------
+CONFIG_COCKPIT_HTTP_PORT={{sap_iq_config_cockpit_http_port}}
+CONFIG_COCKPIT_HTTPS_PORT={{sap_iq_config_cockpit_https_port}}
+
+#Cockpit - Configure RMI Port
+#----------------------------
+COCKPIT_RMI_PORT_NUMBER={{sap_iq_cockpit_rmi_port_number}}
+
+#Cockpit - Configure TDS Port
+#----------------------------
+COCKPIT_TDS_PORT_NUMBER={{sap_iq_cockpit_tds_port_number}}
+
+#Start Cockpit
+#-------------
+START_COCKPIT_SERVER={{sap_iq_start_cockpit_server}}

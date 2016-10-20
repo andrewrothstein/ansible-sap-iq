@@ -1,0 +1,3 @@
+---
+sap_iq_archive: IQSERV{{sap_iq_ver}}.tar
+sap_iq_url: '{{sap_iq_mirror}}/{{sap_iq_archive}}'
