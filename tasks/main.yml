@@ -57,3 +57,19 @@
     -DAGREE_TO_SAP_LICENSE=true
   args:
     creates: '{{sap_iq_home}}/SYBASE.sh'
+
+- name: install additional packages
+  become: yes
+  become_user: root
+  with_items: '{{sap_iq_addl_pkgs | default([])}}'
+  package: >-
+    name={{item}}
+    state=latest
+
+- name: set environment variables
+  become: yes
+  become_user: root
+  file: >-
+    src={{sap_iq_home}}/IQ.sh
+    dest=/etc/profile.d/IQ.sh
+    state=link
