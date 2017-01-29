@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Andrew Rothstein
-  description: runs silent install of SAP IQ
+  description: runs unattended install of SAP/Sybase IQ
   company: BlackRock
   license:
     - MIT
@@ -11,9 +11,11 @@ galaxy_info:
       versions:
         - 7
   galaxy_tags:
-    - development
+    - database
+    - sap-iq
+    - sybase-iq
 
 dependencies:
   - role: andrewrothstein.unarchive-deps
-    version: v1.0.3
+    version: v1.0.5
   

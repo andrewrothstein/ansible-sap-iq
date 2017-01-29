@@ -1,7 +1,7 @@
-Role Name
+andrewrothstein.sap-iq
 =========
 
-A brief description of the role goes here.
+A role for doing an unattended install of [SAP a.k.a Sybase IQ](https://en.wikipedia.org/wiki/Sybase_IQ)
 
 Requirements
 ------------
@@ -21,9 +21,11 @@ See [meta/main.yml](meta/main.yml)
 Example Playbook
 ----------------
 
-    - hosts: servers
-      roles:
-         - username.rolename
+```yml
+- hosts: servers
+  roles:
+    - andrewrothstein.sap-iq
+```
 
 License
 -------
@@ -33,4 +35,5 @@ MIT
 Author Information
 ------------------
 
-Andrew Rothstein andrew.rothstein@gmail.com
+* Andrew Rothstein <andrew.rothstein@gmail.com>
+* Vishal Shah

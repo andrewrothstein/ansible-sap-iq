@@ -2,50 +2,52 @@
 - name: create sybase group
   become: yes
   become_user: root
-  group: name={{sap_iq_groupname}} state=present
+  group:
+    name: '{{sap_iq_groupname}}'
+    state: present
 
 - name: create sybase user
   become: yes
   become_user: root
-  user: >-
-    name={{sap_iq_username}}
-    group={{sap_iq_groupname}}
-    home={{sap_iq_home}}
-    state=present
+  user:
+    name: '{{sap_iq_username}}'
+    group: '{{sap_iq_groupname}}'
+    home: '{{sap_iq_home}}'
+    state: present
 
 - name: write responses...
   become: yes
   become_user: '{{sap_iq_username}}'
   with_items:
     - responses
-  template: >-
-    src={{item}}.j2
-    dest={{sap_iq_home}}/{{item}}
-    mode=0644
+  template:
+    src: '{{item}}.j2'
+    dest: '{{sap_iq_home}}/{{item}}'
+    mode: '0644'
 
 - name: download installation media
   become: yes
   become_user: '{{sap_iq_username}}'
-  get_url: >-
-    url={{sap_iq_url}}
-    dest=/tmp/{{sap_iq_archive}}
-    mode=0644
+  get_url:
+    url: '{{sap_iq_url}}'
+    dest: /tmp/{{sap_iq_archive}}
+    mode: '0644'
 
 - name: mkdirs for installer and target
   become: yes
   become_user: '{{sap_iq_username}}'
-  file: >-
-    path={{sap_iq_home}}/installer
-    state=directory
-    mode=0755
+  file:
+    path: '{{sap_iq_home}}/installer'
+    state: directory
+    mode: '0755'
 
 - name: unarchive installer
   become: yes
   become_user: '{{sap_iq_username}}'
-  unarchive: >-
-    src=/tmp/{{sap_iq_archive}}
-    dest={{sap_iq_home}}/installer
-    creates={{sap_iq_home}}/installer/{{sap_iq_patch}}
+  unarchive:
+    src: /tmp/{{sap_iq_archive}}
+    dest: '{{sap_iq_home}}/installer'
+    creates: '{{sap_iq_home}}/installer/{{sap_iq_patch}}'
 
 - name: install...
   become: yes
@@ -62,14 +64,14 @@
   become: yes
   become_user: root
   with_items: '{{sap_iq_addl_pkgs | default([])}}'
-  package: >-
-    name={{item}}
-    state=latest
+  package:
+    name: '{{item}}'
+    state: present
 
 - name: set environment variables
   become: yes
   become_user: root
-  file: >-
-    src={{sap_iq_home}}/IQ.sh
-    dest=/etc/profile.d/IQ.sh
-    state=link
+  file:
+    src: '{{sap_iq_home}}/IQ.sh'
+    dest: '/etc/profile.d/IQ.sh'
+    state: link
