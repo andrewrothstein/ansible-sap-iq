@@ -52,3 +52,7 @@ sap_iq_cockpit_tds_port_number: 4998
 
 sap_iq_start_cockpit_server: 'No'
 
+sap_iq_addl_pkgs:
+  - libaio
+  - csh
+  - ksh
